@@ -86,3 +86,33 @@
 .hide{
     display: none;
 }
+.my-modal{
+    transform: translate(5%, 30%);
+    height: 460px;
+    width: 600px;
+    background-color: transparent;
+    position: relative;
+}
+.close-button{
+    background-color: white;
+    float: right;
+    font-size: 18px;
+    position: relative;
+
+}
+
+.player{
+    height: 100%;
+    width: 100%;
+}
+.modal-header{
+    background-color: black;
+}
+.modal-body{
+    background-color: black;
+    
+}
+#mymodal{
+    height: 600px;
+    width: 700px;
+}
