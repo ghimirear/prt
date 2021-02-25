@@ -79,9 +79,45 @@ searchButton.addEventListener('click', function() {
              div.style.width = '200px'
             
               cardContainer.appendChild(div);
-           callSlick();       
-         }    
-      });  
+                
+         }   
+        // function to watch movie trailler
+ const watchButton = document.querySelectorAll('.watchButton');
+ if(watchButton){
+     watchButton.forEach((button)=>{
+         button.addEventListener('click', (e) =>{
+             const id = e.target.getAttribute('movie-id');
+             const dataTarget = e.target.getAttribute('data-target');
+             console.log(dataTarget);
+             console.log(id)
+             var myHeaders = new Headers();
+             myHeaders.append("api-key", "f768a6c01320d0648fbd19db34d53112");
+             var requestOptions = {
+                 method: 'GET',
+                 
+             };
+             fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=f768a6c01320d0648fbd19db34d53112&language=en-US`,requestOptions)
+                 .then(response => response.json())
+                 .then(result => { 
+                     console.log(result);
+                      watchBtn.setAttribute('data-toggle', 'modal');
+                     var link = result['results'][0].key;
+                     var embed = `https://www.youtube.com/embed/${link}`
+                     document.querySelector('.player').src= embed;
+                     $('#mymodal').modal('show');
+                     $('.close-button').on('click', function () {
+                         $('#mymodal').modal('hide');
+                     });
+                  })
+         
+ 
+         })
+     })
+ }
+  });  
+
+
+
       
 });
  // searchbutton finish here
@@ -129,43 +165,11 @@ if(addButton){
 
 
 
- // function to watch movie trailler
- const watchButton = document.querySelectorAll('.watchButton');
- if(watchButton){
-     watchButton.forEach((button)=>{
-         button.addEventListener('click', (e) =>{
-             const id = e.target.getAttribute('movie-id');
-             const dataTarget = e.target.getAttribute('data-target');
-             console.log(dataTarget);
-             console.log(id)
-             var myHeaders = new Headers();
-             myHeaders.append("api-key", "f768a6c01320d0648fbd19db34d53112");
-             var requestOptions = {
-                 method: 'GET',
-                 
-             };
-             fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=f768a6c01320d0648fbd19db34d53112&language=en-US`,requestOptions)
-                 .then(response => response.json())
-                 .then(result => { 
-                     console.log(result);
-                      watchBtn.setAttribute('data-toggle', 'modal');
-                     var link = result['results'][0].key;
-                     var embed = `https://www.youtube.com/embed/${link}`
-                     document.querySelector('.player').src= embed;
-                     $('#mymodal').modal('show');
-                     $('.close-button').on('click', function () {
-                         $('#mymodal').modal('hide');
-                     });
-                  })
-         
- 
-         })
-     })
- }
+
  
  // to prive the slider function to the film row.
- function callSlick(){
-  $('.card-container2').slick({
+ 
+ $('.card-container2').slick({
     dots: true,
     infinite: true,
     speed: 300,
@@ -197,7 +201,7 @@ if(addButton){
       }
       
     ]
-  });
-}
+});
+
  
  
