@@ -63,12 +63,30 @@
          <div class="row">
              <div class="col col-sm-3 col-xs-3 col-lg-2 activity-col">
                  <ul class="activity-list">
-                        <a href="" class="a-list"> <li class="text-capitalize">search movie</li></a>
+                        <!--  <a href="" type="button" data-toggle="modal" class="a-list button small-modal"  data-target=".bd-example-modal-sm"> <li class=" text-capitalize">search movie</li></a> --> 
+                              <!-- movie input-->
+                              <a type="button" class=" a-list small-modal" data-toggle="modal" data-target=".bd-example-modal-sm">search movie</a>  
+
+                              <div class="modal fade bd-example-modal-sm movie-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                  <div class="modal-content">
+                                   
+                                   <input type="text" class="input movie-input" id="movie-input" placeholder="name of the movie">
+                                   
+                                   <div class="modal-footer">
+                                    <button class="btn btn-primary search-button">search</button>
+                                  </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                            <!--ends here-->
                          <a href="" class="a-list"><li class="text-capitalize">search events</li></a>
                     
                          <a href="" class="a-list"><li class="text-capitalize">add events</li></a>
                  </ul>
              </div>
+             
 
              <div class="col col-sm-9 col-xs-9 col-lg-10 ">
               <div class="card-container items-col">
@@ -177,7 +195,7 @@
                   
               <div class="col col-sm-9 col-xs-9 col-lg-10 ">
                 <div class="card-container2 item-col">
-
+                    <!-- all items will be placed here-->
                 </div>
              </div> 
               </div>
@@ -234,7 +252,9 @@
   ]
 });
 
-
+$('.small-modal').on('click', function () {
+                                 $('.bd-example-modal-sm').modal('show');
+                             });
 // $('.card-container2').slick({
 //   dots: true,
 //   infinite: true,

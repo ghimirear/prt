@@ -48,6 +48,10 @@
     display: flex;
     flex-direction: row;
 }
+.card-container2{
+    display: flex;
+    flex-direction: row; 
+}
 .card{
     width: 300px;
     height: 300px;
@@ -115,4 +119,29 @@
 #mymodal{
     height: 600px;
     width: 700px;
+}
+
+.movie-modal{
+   transform: translate(0%, 0%);
+   height: auto;
+   width: 500px;
+  
+}
+
+.modal-content{
+  background-color: black;
+}
+.movie-input{
+    all: unset;
+width: 100%;
+background-color: rgb(251, 247, 247);
+color:black;
+}
+.search-button{
+    width: auto;
+    
+}
+.modal-footer{
+    background-color:  rgb(189, 167, 167);;
+    color: white;
 }
