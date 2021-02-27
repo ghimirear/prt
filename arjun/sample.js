@@ -8,11 +8,12 @@ searchButton.addEventListener('click', function() {
       if (movieName === '') {
         return;
       }
-      $('.card-container2').empty();
+      
       //https://api.themoviedb.org/3/search/movie/?api_key=f768a6c01320d0648fbd19db34d53112&language=en-US&page=1&include_adult=true&query=salt
       // for video.
       // https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=f768a6c01320d0648fbd19db34d53112&language=en-US
- 
+      $('.bd-example-modal-sm').modal('hide');
+      
      var myHeaders = new Headers();
      myHeaders.append("api-key", "f768a6c01320d0648fbd19db34d53112");
      var requestOptions = {
@@ -22,6 +23,7 @@ searchButton.addEventListener('click', function() {
          .then(response => response.json())
          .then(result => { 
              console.log(result);
+             $('.card-container2').empty();
             for (let i = 0; i < result['results'].length; i++) {
  
              // bringing all the api search data
@@ -80,12 +82,19 @@ searchButton.addEventListener('click', function() {
             
               cardContainer.appendChild(div);
                 
-         }   
-        // function to watch movie trailler
- const watchButton = document.querySelectorAll('.watchButton');
- if(watchButton){
-     watchButton.forEach((button)=>{
-         button.addEventListener('click', (e) =>{
+         }  
+         // refreshing slick
+         $(".card-container2").slick("refresh"); 
+         
+          // to prive the slider function to the film row.
+          
+          //$('.movie-input').val() = '';
+
+          // function to watch movie trailler
+          const watchButton = document.querySelectorAll('.watchButton');
+          if(watchButton){
+          watchButton.forEach((button)=>{
+          button.addEventListener('click', (e) =>{
              const id = e.target.getAttribute('movie-id');
              const dataTarget = e.target.getAttribute('data-target');
              console.log(dataTarget);
@@ -111,18 +120,12 @@ searchButton.addEventListener('click', function() {
                   })
          
  
-         })
+      })
      })
- }
-  });  
+  }
+  // watchbutton finish here
 
-
-
-      
-});
- // searchbutton finish here
-
-// add to database 
+  // add to database 
 const addButton = document.querySelectorAll('.addButton');
 if(addButton){
     addButton.forEach((button)=>{
@@ -163,45 +166,52 @@ if(addButton){
     })
 }
 
+    });  
 
 
 
- 
- // to prive the slider function to the film row.
- 
- $('.card-container2').slick({
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 3,
-    slidesToScroll: 2,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
       
-    ]
 });
+ // searchbutton finish here
+
+ $('.card-container2').slick({
+  dots: true,
+  infinite: true,
+  speed: 300,
+  slidesToShow: 3,
+  slidesToScroll: 2,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 2,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    
+  ]
+});
+
+
+
+
+ 
 
  
  
